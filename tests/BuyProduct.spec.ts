@@ -1,32 +1,11 @@
-import { test, expect } from '@playwright/test';
-import { HomePage } from "./pages/HomePage";
-import { ShopPage } from "./pages/ShopPage";
-import { ProductPage } from "./pages/ProductPage";
-import { CartPage } from "./pages/CartPage";
+import { expect } from '@playwright/test';
+import { test } from "./fixtures/TestFixtures";
 
-let homePage: HomePage;
-let shopPage: ShopPage;
-let productPage: ProductPage;
-let cartPage: CartPage
+let ploomUrl = 'https://www.ploom.co.uk/en';
 
-test.beforeEach(async ({page}) => {
-    homePage = new HomePage(page);
-    shopPage = new ShopPage(page);
-    productPage = new ProductPage(page);
-    cartPage = new CartPage(page);
-});
+test('Choose product and add to cart', async ({page, homePage, shopPage, productPage, cartPage}) => {
 
-test.afterEach( async ({page}) => {
-    await page.close();
-});
-
-test.afterAll('Teardown', async () => {
-    console.log('Tests done');
-});
-
-test('Choose product and add to cart', async ({page}) => {
-
-    await page.goto('https://www.ploom.co.uk/en');
+    await page.goto(ploomUrl);
 
     await homePage.acceptCookies();
     await homePage.confirmAge();
