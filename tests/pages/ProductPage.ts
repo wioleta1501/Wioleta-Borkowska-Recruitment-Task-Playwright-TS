@@ -17,7 +17,7 @@ export class ProductPage {
         return this.locators.productName.textContent();
     }
 
-    async checkCartCounter() {
+    async checkCartCounter(): Promise<String> {
         return this.locators.cartCounter.textContent();
     }
 
