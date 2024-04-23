@@ -1,14 +1,15 @@
-import { Locator, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
+import { ShopPageLocators } from "../locators/ShopPageLocators";
 
 export class ShopPage {
 
-    constructor(private page: Page) {
-        this.page = page;
+    public readonly locators: ShopPageLocators;
+
+    constructor(page: Page) {
+        this.locators = new ShopPageLocators(page);
     }
 
-    public itemButton: Locator = this.page.locator('[data-sku="ploom-x-advanced"]');
-
     async chooseItem(): Promise<void> {
-        await this.itemButton.click();
+        await this.locators.itemButton.click();
     }
 }

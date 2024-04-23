@@ -1,15 +1,16 @@
-import { Locator, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
+import { CartPageLocators } from "../locators/CartPageLocators";
 
 export class CartPage {
 
-    constructor(private page: Page) {
-        this.page = page;
+    private readonly locators: CartPageLocators;
+
+    constructor(page: Page) {
+        this.locators = new CartPageLocators(page);
     }
 
-    public productInCartName: Locator = this.page.locator('#one-page-checkout a').nth(2);
-
     async getProductNameFromCart(): Promise <String> {
-        return this.productInCartName.textContent();
+        return this.locators.productInCartName.textContent();
     }
 
 }

@@ -1,30 +1,28 @@
-import { Locator, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
+import { ProductPageLocators } from "../locators/ProductPageLocators";
 
 export class ProductPage {
 
-    constructor(private page: Page) {
-        this.page = page;
+    private readonly locators: ProductPageLocators;
+
+    constructor(page: Page) {
+        this.locators = new ProductPageLocators(page);
     }
 
-    public addToCartButton: Locator = this.page.getByTestId('pdpAddToProduct');
-    public productName: Locator = this.page.locator('h1');
-    public cartCounter: Locator = this.page.locator('.mini-cart__icon-label');
-    public cartPageButton: Locator = this.page.getByTestId('miniCartCheckoutButton');
-
     async addProductToCart(): Promise<void> {
-        await this.addToCartButton.click();
+        await this.locators.addToCartButton.click();
     }
 
     async getProductName(): Promise<String> {
-        return this.productName.textContent();
+        return this.locators.productName.textContent();
     }
 
     async checkCartCounter() {
-        return this.cartCounter.textContent();
+        return this.locators.cartCounter.textContent();
     }
 
     async goToCheckout(): Promise <void> {
-        await this.cartPageButton.click();
+        await this.locators.cartPageButton.click();
     }
 
 }

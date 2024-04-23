@@ -1,25 +1,24 @@
-import { Locator, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
+import { HomePageLocators } from "../locators/HomePageLocators";
 
 export class HomePage {
 
-    constructor(private page: Page) {
-        this.page = page;
+    private readonly locators: HomePageLocators;
+
+    constructor(page: Page) {
+        this.locators = new HomePageLocators(page);
     }
 
-    public cookieAcceptButton: Locator = this.page.getByRole('button', {name: 'GOT IT'});
-    public ageConfirmButton: Locator = this.page.locator('.ageconfirmation__actionWrapper > div').first();
-    public shopPageButton: Locator = this.page.getByTestId('headerItem-1');
-
     async acceptCookies(): Promise<void> {
-        await this.cookieAcceptButton.click();
+        await this.locators.cookieAcceptButton.click();
     }
 
     async confirmAge(): Promise<void> {
-        await this.ageConfirmButton.click();
+        await this.locators.ageConfirmButton.click();
     }
 
     async openShopPage(): Promise<void> {
-        await this.shopPageButton.click();
+        await this.locators.shopPageButton.click();
     }
 
 }
