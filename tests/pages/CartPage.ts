@@ -9,7 +9,7 @@ export class CartPage {
         this.locators = new CartPageLocators(page);
     }
 
-    async getProductNameFromCart(): Promise <String> {
+    async getProductNameFromCart(): Promise<String> {
         return this.locators.productInCartName.textContent();
     }
 

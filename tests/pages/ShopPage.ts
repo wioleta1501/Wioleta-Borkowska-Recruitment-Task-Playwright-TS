@@ -3,7 +3,7 @@ import { ShopPageLocators } from "../locators/ShopPageLocators";
 
 export class ShopPage {
 
-    public readonly locators: ShopPageLocators;
+    private readonly locators: ShopPageLocators;
 
     constructor(page: Page) {
         this.locators = new ShopPageLocators(page);

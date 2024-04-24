@@ -21,7 +21,7 @@ export class ProductPage {
         return this.locators.cartCounter.textContent();
     }
 
-    async goToCheckout(): Promise <void> {
+    async goToCheckout(): Promise<void> {
         await this.locators.cartPageButton.click();
     }
 
